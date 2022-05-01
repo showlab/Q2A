@@ -47,7 +47,7 @@ The evaluation will be performed after each epoch. You can use Tensorboard, or j
 
 ### LOVEU@CVPR2022 Challenge: 80 videos' QA samples for training, 20 videos' QA samples for testing
 
-|  Model   | Recall@1 &#8593 | Recall@3 &#8593 | MR (Mean Rank) &#8595 | MRR (Mean Reciprocal Rank) &#8593 |
+|  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
 |  ----  |  ----  |  ----  |  ----  |  ----  |
 | Q2A ([configs/loveu_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml](configs/loveu_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml)) | 21.8 | 62.3 | 3.6 | 2.7 |
 
@@ -55,13 +55,13 @@ The evaluation will be performed after each epoch. You can use Tensorboard, or j
 
 (1) Validation: current step can use the ground-truth answers in previous steps
 
-|  Model   | Recall@1 &#8593 | Recall@3 &#8593 | MR (Mean Rank) &#8595 | MRR (Mean Reciprocal Rank) &#8593 |
+|  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
 |  ----  |  ----  |  ----  |  ----  |  ----  |
 | Q2A ([configs/assistq_q2a_trainval_fps1+maskx2_vit_b16+bert_b.yaml](configs/assistq_q2a_trainval_fps1+maskx2_vit_b16+bert_b.yaml)) | 29.0 | 55.9 | 3.6 | 3.1 |
 
 (2) Testing: 
 
-|  Model   | Recall@1 &#8593 | Recall@3 &#8593 | MR (Mean Rank) &#8595 | MRR (Mean Reciprocal Rank) &#8593 |
+|  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
 |  ----  |  ----  |  ----  |  ----  |  ----  |
 | Q2A ([configs/assistq_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml](configs/assistq_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml)) | 28.7 | 55.5 | 3.7 | 3.1 |
 

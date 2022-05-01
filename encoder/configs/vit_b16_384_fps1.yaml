@@ -1,0 +1,15 @@
+DATASET: 
+  ROOT: "/data/chenjoya/assistq"
+  SPLIT: "train"
+MODEL: 
+  VISION: "vit_base_patch16_384"
+  TEXT: "bert-base-uncased"
+INPUT: 
+  FPS: 1
+  SIZE: [384, 384]
+FOR:
+  VIDEO: False
+  SCRIPT: False
+  QA: False
+QA:
+  NUM_MASKS: 2

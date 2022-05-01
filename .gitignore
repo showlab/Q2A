@@ -1,0 +1,11 @@
+*.data*
+*.index
+*.out
+*.pkl
+*.txt
+example/
+__pycache__/
+outputs/
+*extract/
+lightning_logs/
+.vscode/

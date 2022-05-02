@@ -31,7 +31,13 @@ class Q2A(nn.Module):
         self.qa2s = nn.MultiheadAttention(cfg.INPUT.DIM, cfg.MODEL.NUM_HEADS)
         
         self.state = torch.randn(cfg.MODEL.DIM_STATE, device="cuda")
-        self.proj = MLP(cfg.MODEL.DIM_STATE*2, 1)
+        if cfg.MODEL.HISTORY.ARCH == "mlp":
+            self.proj = MLP(cfg.MODEL.DIM_STATE*2, 1)
+        elif cfg.MODEL.HISTORY.ARCH == "gru":
+            self.gru = nn.GRUCell(cfg.MODEL.DIM_STATE, cfg.MODEL.DIM_STATE)
+            self.proj = MLP(cfg.MODEL.DIM_STATE, 1)
+        else:
+            assert False, "unknown arch"
         
         self.history_train = cfg.MODEL.HISTORY.TRAIN
         self.history_val = cfg.MODEL.HISTORY.VAL
@@ -52,7 +58,7 @@ class Q2A(nn.Module):
                 A = len(a_buttons)
                 a_buttons = self.mlp_v(
                     torch.stack(a_buttons).view(A, -1, a_texts.shape[1])
-                ).view(A, -1)
+                ).view(A, -1) 
                 qa = question + a_texts
                 qa_script, qa_script_mask = self.qa2s(
                     qa.unsqueeze(1), script.unsqueeze(1), script.unsqueeze(1)
@@ -63,7 +69,10 @@ class Q2A(nn.Module):
                     dim=1
                 )
                 inputs = self.mlp_pre(inputs)
-                states = torch.cat([inputs, state.expand_as(inputs)], dim=1)
+                if hasattr(self, "gru"):
+                    states = self.gru(inputs, state.expand_as(inputs))
+                else:
+                    states = torch.cat([inputs, state.expand_as(inputs)], dim=1)
                 logits = self.proj(states)
                 if self.training:
                     loss += F.cross_entropy(logits.view(1, -1), label[i].view(-1))

@@ -17,6 +17,7 @@ MODEL:
   HISTORY: 
     TRAIN: 'gt'
     VAL: 'gt'
+    ARCH: 'mlp'
 SOLVER:
   LR: 0.002
   BATCH_SIZE: 16

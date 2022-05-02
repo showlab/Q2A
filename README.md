@@ -38,32 +38,16 @@ See [encoder.md](https://github.com/showlab/Q2A/blob/master/encoder/README.md).
 Select the config file and simply train, e.g.,
 
 ```
-CUDA_VISIBLE_DEVICES=0 python train.py --cfg configs/loveu_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml
+CUDA_VISIBLE_DEVICES=0 python train.py --cfg configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml
 ```
 
 The evaluation will be performed after each epoch. You can use Tensorboard, or just terminal outputs to record evaluation results.
 
-## Performance
-
-### LOVEU@CVPR2022 Challenge: 80 videos' QA samples for training, 20 videos' QA samples for testing
+## Baseline Performance for LOVEU@CVPR2022 Challenge: 80 videos' QA samples for training, 20 videos' QA samples for testing
 
 |  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
 |  ----  |  ----  |  ----  |  ----  |  ----  |
-| Q2A ([configs/loveu_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml](configs/loveu_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml)) | 21.8 | 62.3 | 3.6 | 2.7 |
-
-### 8:2 QA samples splitting for training and validation/testing, respectively
-
-(1) Validation: current step can use the ground-truth answers in previous steps
-
-|  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
-|  ----  |  ----  |  ----  |  ----  |  ----  |
-| Q2A ([configs/assistq_q2a_trainval_fps1+maskx2_vit_b16+bert_b.yaml](configs/assistq_q2a_trainval_fps1+maskx2_vit_b16+bert_b.yaml)) | 29.0 | 55.9 | 3.6 | 3.1 |
-
-(2) Testing: 
-
-|  Model   | Recall@1 ↑ | Recall@3 ↑ | MR (Mean Rank) ↓ | MRR (Mean Reciprocal Rank) ↑ |
-|  ----  |  ----  |  ----  |  ----  |  ----  |
-| Q2A ([configs/assistq_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml](configs/assistq_q2a_traintest_fps1+maskx2_vit_b16+bert_b.yaml)) | 28.7 | 55.5 | 3.7 | 3.1 |
+| Q2A ([configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml](configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml)) | 30.2 | 62.3 | 3.2 | 3.2 |
 
 ## Contact
 

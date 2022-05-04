@@ -56,6 +56,8 @@ The evaluation will be performed after each epoch. You can use Tensorboard, or j
 |  ----  |  ----  |  ----  |  ----  |  ----  |
 | Q2A ([configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml](configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml)) | 30.2 | 62.3 | 3.2 | 3.2 |
 
+![image](https://user-images.githubusercontent.com/20626415/166685483-7c39c6e3-8d3d-43a2-a431-58bdcf67cc16.png)
+
 ## Contact
 
 Feel free to contact us if you have any problems: joyachen97@gmail.com, or leave an issue in this repo.

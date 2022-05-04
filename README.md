@@ -27,7 +27,7 @@ pip install pytorch-lightning
 
 Download training set and testing set (without ground-truth labels) by filling in the [[AssistQ Downloading Agreement]](https://forms.gle/h9A8GxHksWJfPByf7).
 
-Then carefully set your data path in the config file.
+Then carefully set your data path in the config file ;)
 
 ## Encoding
 

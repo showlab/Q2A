@@ -8,7 +8,7 @@ Click to know the task:
 
 [![Click to see the demo](https://img.youtube.com/vi/3v8ceel9Mos/0.jpg)](https://www.youtube.com/watch?v=3v8ceel9Mos)
 
-Model Architecture (see paper for details):
+Model Architecture (see [[Paper]](https://arxiv.org/abs/2203.04203) for details):
 
 ![arch](https://user-images.githubusercontent.com/20626415/162197041-f1b06325-098c-448a-9b65-d746d8bfe08d.png)
 
@@ -25,9 +25,7 @@ pip install pytorch-lightning
 
 ## Data
 
-Download training set by filling in the [[AssistQ Downloading Agreement]](https://forms.gle/h9A8GxHksWJfPByf7).
-
-The testing set will be released on May 01, 2022 (11:59PM Pacific Time).
+Download training set and testing set (without ground-truth labels) by filling in the [[AssistQ Downloading Agreement]](https://forms.gle/h9A8GxHksWJfPByf7).
 
 ## Encoding
 

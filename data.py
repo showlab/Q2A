@@ -6,42 +6,30 @@ from pytorch_lightning import LightningDataModule
 class EncodedAssistQA(Dataset):
     def __init__(self, cfg, is_train):
         super().__init__()
-        # for cvpr challenge, root should be the folder of train / test set
-        if cfg.DATASET.USAGE == "loveu":
-            root = cfg.DATASET.TRAIN if is_train else cfg.DATASET.VAL
-            samples = []
-            for t in os.listdir(root):
-                sample = torch.load(os.path.join(root, t, cfg.INPUT.QA), map_location="cpu")
-                for s in sample:
-                    s["video"] = os.path.join(root, t, cfg.INPUT.VIDEO)
-                    s["script"] = os.path.join(root, t, cfg.INPUT.SCRIPT)
-                samples.extend(sample)
-            self.samples = samples
+        # for loveu@cvpr2022. paper is updated for this.
+        root = cfg.DATASET.TRAIN if is_train else cfg.DATASET.VAL
+        samples = []
+        for t in os.listdir(root):
+            sample = torch.load(os.path.join(root, t, cfg.INPUT.QA), map_location="cpu")
+            for s in sample:
+                s["video"] = os.path.join(root, t, cfg.INPUT.VIDEO)
+                s["script"] = os.path.join(root, t, cfg.INPUT.SCRIPT)
+            samples.extend(sample)
+        self.samples = samples
         
-        # NOTE: This is the data splitting method used in https://arxiv.org/abs/2203.04203, not the cvpr challenge!
-        if cfg.DATASET.USAGE == "assistq":
-            samples = []
-            for split in [cfg.DATASET.TRAIN, cfg.DATASET.VAL]:
-                for t in os.listdir(split):
-                    sample = torch.load(os.path.join(split, t, cfg.INPUT.QA), map_location="cpu")
-                    for s in sample:
-                        s["video"] = os.path.join(split, t, cfg.INPUT.VIDEO)
-                        s["script"] = os.path.join(split, t, cfg.INPUT.SCRIPT)
-                    samples.extend(sample)
-            import random
-            random.shuffle(samples)
-            num_val = int(len(samples)*0.2)
-            self.samples = samples[num_val:] if is_train else samples[:num_val]
-    
     def __getitem__(self, index):
         sample = self.samples[index]
         video = torch.load(sample["video"], map_location="cpu")
         script = torch.load(sample["script"], map_location="cpu")
         question = sample["question"]
         actions = sample["answers"]
-        label = torch.tensor(sample['correct']) - 1 # NOTE here
-        return video, script, question, actions, label
-
+        meta = {'question': sample['src_question'], 'folder': sample['folder']}
+        if 'correct' in sample:
+            label = torch.tensor(sample['correct']) - 1 # NOTE here, start from 1
+        else:
+            label = None
+        return video, script, question, actions, label, meta
+        
     def __len__(self, ):
         return len(self.samples)
 

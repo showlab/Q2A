@@ -24,7 +24,8 @@ class RawAssistQA(Dataset):
         super().__init__()
         self.dataset_root = cfg.DATASET.ROOT 
         self.dataset_split = cfg.DATASET.SPLIT
-        self.label_file = os.path.join(self.dataset_root, self.dataset_split + ".json")
+        self.dataset_label = cfg.DATASET.LABEL
+        self.label_file = os.path.join(self.dataset_root, self.dataset_label)
         self.output_dir = cfg.OUTPUT_DIR
         with open(self.label_file) as f:
             self.qa_dict = json.load(f)
@@ -134,11 +135,11 @@ class RawAssistQA(Dataset):
             return script, output_path
         
         if self.for_qa:
-            if os.path.exists(os.path.join(output_path, f'qa_maskx{self.num_masks}.pth')):
-                return None
             buttons_dict = self.get_buttons_dict(sample_path) # image -> buttons, name -> bbox
             for qa in qas:
                 question = qa['question']
+                qa['folder'] = folder
+                qa['src_question'] = question
                 qa['question'] = self.tokenizer(f'Question: {question}', return_tensors="pt")
                 qa['button_images'] = []
                 qa['answer_bidxs'] = []
@@ -158,7 +159,6 @@ class RawAssistQA(Dataset):
                             num_masks=self.num_masks
                         )
                     )
-                    assert qa['correct'][i] <= len(answers_per_step), output_path
                     answer_bidxs_per_step = []
                     for j, answer in enumerate(answers_per_step):
                         # find the button in answer

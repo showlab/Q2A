@@ -7,7 +7,7 @@ from pytorch_lightning.plugins import DDPPlugin
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 
 if __name__ == "__main__":
-    seed_everything(42, workers=True)
+    seed_everything(0, workers=True)
     cfg = build_config()
     dataset = build_data(cfg)
     model = build_model(cfg)
@@ -26,5 +26,5 @@ if __name__ == "__main__":
         check_val_every_n_epoch=cfg.CHECK_VAL_EVERY_N_EPOCH,
         num_sanity_val_steps=0,
     )
-    trainer.test(model, datamodule=dataset, 
+    trainer.validate(model, datamodule=dataset, 
         ckpt_path=cfg.CKPT if hasattr(cfg, "CKPT") else None)

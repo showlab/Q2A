@@ -41,6 +41,13 @@ Select the config file and simply train, e.g.,
 CUDA_VISIBLE_DEVICES=0 python train.py --cfg configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml
 ```
 
+To inference a model, e.g.,
+
+```
+CUDA_VISIBLE_DEVICES=0 python inference.py --cfg configs/q2a_gru+fps1+maskx-1_vit_b16+bert_b.yaml CKPT "outputs/q2a_gru+fps1+maskx-1_vit_b16+bert_b/lightning_logs/version_0/checkpoints/epoch=5-step=155.ckpt"
+```
+
+
 The evaluation will be performed after each epoch. You can use Tensorboard, or just terminal outputs to record evaluation results.
 
 ## Baseline Performance for LOVEU@CVPR2022 Challenge: 80 videos' QA samples for training, 20 videos' QA samples for testing

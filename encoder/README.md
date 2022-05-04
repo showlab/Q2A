@@ -13,17 +13,27 @@ cd Q2A/encoder
 For video encoding, 
 
 ```
-python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.VIDEO True
+python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.VIDEO True DATASET.SPLIT "train"
+python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.VIDEO True DATASET.SPLIT "test"
 ```
 
 For script encoding, 
 
 ```
-python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.SCRIPT True
+python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.SCRIPT True DATASET.SPLIT "train"
+python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.SCRIPT True DATASET.SPLIT "test"
 ```
 
 For QA encoding,
 
+(1) Training set:
+
 ```
-python main.py --cfg configs/vit_b16_384_fps1_train.yaml FOR.QA True
+python main.py --cfg configs/vit_b16_384_fps1.yaml FOR.QA True DATASET.SPLIT "train" DATASET.LABEL "train.json"
+```
+
+(2) Testing set:
+
+```
+python main.py --cfg configs/vit_b16_384_fps1.yaml FOR.QA True DATASET.SPLIT "test" DATASET.LABEL "test_without_gt.json"
 ```

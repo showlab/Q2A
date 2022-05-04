@@ -1,7 +1,7 @@
 DATASET: 
   TRAIN: 'encoder/outputs/vit_b16_384_fps1/train'
   VAL: 'encoder/outputs/vit_b16_384_fps1/test'
-  USAGE: 'loveu'
+  GT: ''
 DATALOADER:
   NUM_WORKERS: 4
 INPUT:

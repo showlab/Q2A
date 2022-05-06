@@ -1,7 +1,5 @@
 import os, json, pandas
-from itertools import groupby
 from PIL import Image
-from docx import Document
 import torch
 import torchvision
 import torchvision.transforms as T

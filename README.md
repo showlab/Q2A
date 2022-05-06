@@ -16,7 +16,7 @@ Model Architecture (see [[Paper]](https://arxiv.org/abs/2203.04203) for details)
 ## Install
 (1) PyTorch. See https://pytorch.org/ for instruction. For example,
 ```
-conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch
+conda install pytorch torchvision torchtext cudatoolkit=11.3 -c pytorch
 ```
 (2) PyTorch Lightning. See https://www.pytorchlightning.ai/ for instruction. For example,
 ```

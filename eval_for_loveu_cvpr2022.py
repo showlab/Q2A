@@ -28,7 +28,8 @@ def evaluate(all_preds, all_annos):
                 if pred['question'] == anno['question']:
                     # calculate
                     is_matched = True
-                    for scores_per_step, label_per_step in zip(pred['scores'], anno['correct']):
+                    for scores_per_step, label_per_step, answer_per_step in zip(pred['scores'], anno['correct'], anno['answers']):
+                        assert len(scores_per_step) == len(answer_per_step), f"Please check your submission file. The length of scores list {len(scores_per_step)} should be equal to length of candidate answers {len(answer_per_step)}."
                         all_scores.append(np.array(scores_per_step))
                         all_labels.append(np.array(label_per_step - 1)) # label starts from 0
                     break

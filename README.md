@@ -25,9 +25,7 @@ pip install pytorch-lightning
 
 ## Data
 
-Download training set and testing set (without ground-truth labels) by filling in the [[AssistQ Downloading Agreement]](https://forms.gle/h9A8GxHksWJfPByf7).
-
-Then carefully set your data path in the config file ;)
+Download training set and testing set (without ground-truth labels): [[GDrive: AssistQ]](https://drive.google.com/drive/folders/1HZ7RqUHBXWDO_qMfOEjue7TQamUxlx0-?usp=sharing).
 
 ## Encoding
 

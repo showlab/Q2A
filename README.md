@@ -25,7 +25,7 @@ pip install pytorch-lightning
 
 ## Data
 
-Download training set and testing set (without ground-truth labels): [[GDrive: AssistQ]](https://drive.google.com/drive/folders/1HZ7RqUHBXWDO_qMfOEjue7TQamUxlx0-?usp=sharing).
+Download training set and testing set (without ground-truth labels): [[GDrive: AssistQ]](https://drive.google.com/drive/folders/1HZ7RqUHBXWDO_qMfOEjue7TQamUxlx0-?usp=sharing) (password: showlab).
 
 ## Encoding
 
